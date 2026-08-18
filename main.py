@@ -24,7 +24,7 @@ class Voting:
             return None
 
         max_votes = max(self.results.values())
-        winners = [key for key, value in self.results.items() if value == max_votes ]
+        winners = [key for key, value in self.results.items() if value == max_votes]
 
         return winners
 
