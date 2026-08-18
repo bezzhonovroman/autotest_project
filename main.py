@@ -55,10 +55,11 @@ class Voting:
         while True:
             input_value = input("\nВведите номер варианта (или 'стоп' для завершения): ").strip()
 
-            if input_value.lower() in ("стоп", "stop", ""):
-                if input_value == "":
-                    print("Пустой ввод. Если хотите закончить, введите 'стоп'.")
-                    continue
+            if not input_value:
+                print("Пустой ввод. Если хотите закончить, введите 'стоп'.")
+                continue
+
+            if input_value.lower() in ("стоп", "stop"):
                 return None
 
             if not input_value.isdigit():
@@ -89,13 +90,11 @@ def main():
         if choice is None:
             break
 
-        try:
-            voting.vote(choice)
-            print(f"Голос за '{voting.options[choice - 1]}' принят.")
-        except ValueError as error:
-            print(f"Ошибка: {error}")
+        voting.vote(choice)
+        print(f"Голос за '{voting.options[choice - 1]}' принят.")
 
     voting.show_results()
 
 
-main()
+if __name__ == "__main__":
+    main()
