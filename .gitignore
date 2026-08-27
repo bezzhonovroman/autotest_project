@@ -1,0 +1,20 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Виртуальные окружения
+.venv/
+venv/
+env/
+
+# Кеши инструментов
+.pytest_cache/
+.cache/
+.coverage
+htmlcov/
+
+# Служебные файлы IDE и ОС
+.idea/
+.vscode/
+.DS_Store
