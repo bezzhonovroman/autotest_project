@@ -6,10 +6,10 @@ from main import Voting
 class TestCreation:
 
     def test_has_no_votes(self, voting, options):
+        expected_null_result = {option: 0 for option in options}
+
         assert voting.options == options, "Список вариантов не совпадает с переданным в конструктор"
-        assert voting.results == {option: 0 for option in options}, (
-            "У нового голосования счётчики должны быть нулевыми для всех вариантов"
-        )
+        assert voting.results == expected_null_result, "У нового голосования счётчики должны быть нулевыми для всех вариантов"
         assert voting.total_votes() == 0, "У нового голосования не должно быть голосов"
 
 class TestVote:
@@ -59,7 +59,6 @@ class TestWinners:
     def test_tie_returns_all_leaders(self, voting):
         voting.vote(1)
         voting.vote(2)
+        winners = sorted(voting.get_winners())
 
-        assert sorted(voting.get_winners()) == ["Да", "Нет"], (
-            "При равном числе голосов get_winners() должен вернуть всех лидеров"
-        )
+        assert winners == ["Да", "Нет"], "При равном числе голосов get_winners() должен вернуть всех лидеров"
